@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>welcome to Jenkins session</h2>
+<h2>welcome to Jenkins Advanced session</h2>
 </body>
 </html>
