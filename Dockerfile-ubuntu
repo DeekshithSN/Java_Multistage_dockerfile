@@ -1,0 +1,17 @@
+FROM ubuntu
+RUN apt update -y &&\
+    apt install default-jdk -y &&\
+    java -version
+RUN apt install maven -y &&\
+    mvn -version
+RUN apt install -y wget 
+RUN wget https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz
+RUN mkdir /opt/tomcat &&\
+    mv apache-tomcat-9.0.8.tar.gz /opt/tomcat &&\
+    tar -xvzf /opt/tomcat/apache-tomcat-9.0.8.tar.gz
+RUN groupadd tomcat &&\
+    useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
+RUN cd /opt/tomcat/apache-tomcat-9.0.8 &&\
+    chmod 777 conf bin &&\
+    chown -R tomcat webapps/ work/ temp/ logs/ bin/
+ENTRYPOINT ["sh","/opt/tomcat/apache-tomcat-9.0.8/bin/startup.sh"]
