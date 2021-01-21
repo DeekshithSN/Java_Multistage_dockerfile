@@ -1,4 +1,4 @@
-FROM maven as maven
+FROM maven
 RUN mkdir /usr/src/mymaven
 WORKDIR /usr/src/mymaven
 COPY . .
